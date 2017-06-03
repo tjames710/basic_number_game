@@ -14,19 +14,25 @@ def secret_num():
 
     
 def get_guess_from_user():
-    guess = int(input("Guess a number between 1 and 10 > "))
+    while True:
+        try:
+            guess = int(input("Guess a number between 1 and 10 > "))
+            break
+        except ValueError:
+            print("Must enter a valid number 1 - 10.")
+
     return guess
 
 # Play again option
 def play_again(): 
     while True:
-        new_game = input("Would you like to play again? Y/N> ")
+        new_game = input("Would you like to play again? Y/N > ")
         if new_game == "Y":
             start = main()
             start
         elif new_game == "N":
             break
-
+    return play_again
 
 
 def main():
@@ -37,6 +43,7 @@ def main():
 
         # get a number guess from the player
         users_guess = get_guess_from_user()
+            
 
         # compare guess to secret number
         if  users_guess == secret_number:
@@ -48,6 +55,8 @@ def main():
         elif users_guess < secret_number:
             print("Guess higher")
             continue
+
+
 
     
     return main
